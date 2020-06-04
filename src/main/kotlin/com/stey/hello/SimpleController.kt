@@ -2,11 +2,9 @@ package com.stey.hello
 
 import org.springframework.data.domain.Pageable
 import org.springframework.data.domain.Sort
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RequestParam
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.*
 import java.time.Instant
+import java.util.*
 
 /**
  * Created on 2020/03/02.
@@ -17,9 +15,19 @@ import java.time.Instant
 @RequestMapping("/api")
 class SimpleController {
 
+    @GetMapping("/time-body")
+    fun timeBody(@RequestBody time: TimeBody): TimeBody {
+        return time
+    }
+
     @GetMapping("/read-serialize")
     fun readAndSerializeDate(@RequestParam time: Instant): Instant {
         return time
+    }
+
+    @GetMapping("do-date")
+    fun date(): Date {
+        return Date()
     }
 
     @GetMapping("do-pageable")
@@ -33,3 +41,7 @@ class SimpleController {
     }
 
 }
+
+data class TimeBody(
+        val time: Instant
+)
