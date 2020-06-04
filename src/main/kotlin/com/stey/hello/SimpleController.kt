@@ -1,5 +1,6 @@
 package com.stey.hello
 
+import org.springframework.data.domain.PageRequest
 import org.springframework.data.domain.Pageable
 import org.springframework.data.domain.Sort
 import org.springframework.web.bind.annotation.GetMapping
@@ -17,14 +18,19 @@ import java.time.Instant
 @RequestMapping("/api")
 class SimpleController {
 
+    @GetMapping("/hi")
+    fun hello(): String {
+        return "你好";
+    }
+
     @GetMapping("/read-serialize")
     fun readAndSerializeDate(@RequestParam time: Instant): Instant {
         return time
     }
 
     @GetMapping("do-pageable")
-    fun pageable(pageable: Pageable): Pageable {
-        return pageable
+    fun pageable(pageable: Pageable, size: Int, page : Int): Pageable {
+        return PageRequest.of(page, size, pageable.sort);
     }
 
     @GetMapping("do-sort")

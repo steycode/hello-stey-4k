@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.jdbc.DataSourceTransactionManagerA
 import org.springframework.boot.runApplication
 
 @SpringBootApplication(exclude = [DataSourceAutoConfiguration::class, DataSourceTransactionManagerAutoConfiguration::class])
-class DemoApplication
+open class DemoApplication
 
 fun main(args: Array<String>) {
 	runApplication<DemoApplication>(*args)
